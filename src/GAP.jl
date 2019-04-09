@@ -1,6 +1,7 @@
 module GAP
 
 include(abspath(joinpath(@__DIR__, "..", "deps", "deps.jl")))
+include( "repl.jl" )
 
 """
     FFE
@@ -106,6 +107,9 @@ function __init__()
     Base.MainInclude.eval(:(__JULIAGAPMODULE = $gap_module))
     if ! isdefined(Main, :__GAPINTERNAL_LOADED_FROM_GAP) || Main.__GAPINTERNAL_LOADED_FROM_GAP != true
         run_it(GAPROOT, error_handler_func)
+    end
+    if isdefined(Base, :active_repl)
+        run_gap_repl()
     end
 end
 
