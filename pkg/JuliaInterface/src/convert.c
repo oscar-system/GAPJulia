@@ -61,7 +61,7 @@ Obj gap_julia(jl_value_t * julia_obj)
         if (INT_INTOBJ_MIN <= v && v <= INT_INTOBJ_MAX) {
             return INTOBJ_INT(v);
         }
-        return ObjInt_Int8(v);
+        return NewJuliaObj(julia_obj);
     }
     if (is_gapobj(julia_obj)) {
         return (Obj)julia_obj;

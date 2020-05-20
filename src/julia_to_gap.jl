@@ -29,7 +29,6 @@ end
 
 ## Small integers types always fit into GAP immediate integers, and thus are
 ## represented by Int64 on the Julia side.
-julia_to_gap(x::Int64)  = x
 julia_to_gap(x::Int32)  = Int64(x)
 julia_to_gap(x::Int16)  = Int64(x)
 julia_to_gap(x::Int8)   = Int64(x)
