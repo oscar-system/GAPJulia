@@ -1,6 +1,6 @@
-[gap]
-git-tree-sha1 = "848f0f318405266896d24d11e4baf5cf7bf3f203"
+[required-packages]
+git-tree-sha1 = "e2252b63910b754af7564a3247ed80cc3d6e0db1"
 
-    [[gap.download]]
-    sha256 = "8bb16ff9fc48c260be38c0953b3321df1d6d42ad1f71e0999d379497cca44c05"
-    url = "https://github.com/oscar-system/GAP.jl/releases/download/v0.3.5/gap-4.11.0.tar.bz2"
+    [[required-packages.download]]
+    sha256 = "29ab6e2752f39d22e3f0a19e5bcbfec1710993b4cfd52337a0ca10fda6a76537"
+    url = "https://github.com/gap-system/gap/releases/download/v4.11.0/packages-required-v4.11.0.tar.gz"

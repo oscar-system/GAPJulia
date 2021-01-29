@@ -138,11 +138,6 @@ function regenerate_gaproot()
             gaproot_mutable,
             gaproot_packages,       # default installation dir for PackageManager
             sysinfo["GAP_LIB_DIR"], # the actual GAP library, from GAP_lib_jll
-
-            # FIXME/HACK: the GAP 4.11.0 package archive contains ._*
-            # files, which breaks git tree checksums; so for now we
-            # keep using our old hacked gap tarball instead
-            joinpath(artifact"gap", "gap-4.11.0"),  # GAP package archive
             ]
     sysinfo["GAPROOTS"] = join(roots, ";")
 
@@ -166,6 +161,9 @@ function regenerate_gaproot()
                 write(file, str, "\n")
             end
         end
+
+        # plug in require packages
+        force_symlink(artifact"required-packages", "pkg")
 
         # patch gac; for now we also use a modified copy of gac 
         # we completely get rid of libtool to simplify our life (the extra speed
@@ -218,9 +216,6 @@ function regenerate_gaproot()
         # for building GAP packages
         force_symlink(joinpath(GAP_lib_jll.find_artifact_dir(), "share", "gap", "bin", "BuildPackages.sh"),
                       joinpath("bin", "BuildPackages.sh"))
-
-        # create an empty `pkg` directory for PackageManager to play in
-        mkpath("pkg")
 
         ##
         ## Create Project.toml & Manifest.toml for use by gap.sh
