@@ -152,9 +152,4 @@ function(filter, obj)
     Error("<obj> must be a Julia string or symbol");
 end);
 
-
-##
-##  When Julia loads GAP.jl, the module GAP is not yet available here;
-##  we have to use __JULIAGAPMODULE instead.
-##
-InstallGlobalFunction("GAPToJulia", JuliaFunction( "_gap_to_julia", "__JULIAGAPMODULE" ) );
+InstallGlobalFunction("GAPToJulia", Julia.GAP._gap_to_julia );
